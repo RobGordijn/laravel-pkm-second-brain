@@ -2,6 +2,8 @@
 
 An opinionated personal knowledge management app ("second brain") built with Laravel and the [Laravel AI SDK](https://laravel.com/docs/ai-sdk). Dump a loose thought, a link or a to-do; the AI classifies it, writes a title and summary, adds tags and actions, finds related notes and suggests a project. Later you can ask questions across everything you saved and get answers with sources.
 
+![The "How it works" page: the flow from capture to organize, with live counts](.github/how-it-works.png)
+
 > [!WARNING]
 > This is a prototype and a "this is how I do it" project, not a finished product. **There is no authentication**: every page is open to anyone who can reach the app. Run it locally or behind something that restricts access (a VPN, Tailscale, HTTP basic auth at the web server). Only the capture API is protected, by a bearer token.
 
