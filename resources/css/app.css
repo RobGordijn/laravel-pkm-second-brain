@@ -1,0 +1,231 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+/*
+ * Palette: baltic blue (primary), rich cerulean (projects and AI), sage green (success),
+ * lime moss (highlights) and a blue-grey "ink" neutral built around alice blue.
+ * Scales follow the Tailwind convention: 50 is lightest, 950 darkest.
+ */
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-ink-50: #f6f9fc;
+    --color-ink-100: #ebf2fa;
+    --color-ink-200: #d8e2ee;
+    --color-ink-300: #bccada;
+    --color-ink-400: #8a9cb1;
+    --color-ink-500: #63768c;
+    --color-ink-600: #4a5b6f;
+    --color-ink-700: #364456;
+    --color-ink-800: #233040;
+    --color-ink-900: #151f2a;
+    --color-ink-950: #0c131b;
+
+    --color-baltic-50: #e6f6fd;
+    --color-baltic-100: #b9e9fc;
+    --color-baltic-200: #73d4fa;
+    --color-baltic-300: #2dbef7;
+    --color-baltic-400: #089bd5;
+    --color-baltic-500: #05668d;
+    --color-baltic-600: #045372;
+    --color-baltic-700: #033e56;
+    --color-baltic-800: #022a39;
+    --color-baltic-900: #01151d;
+    --color-baltic-950: #000c11;
+
+    --color-cerulean-50: #ebf2f7;
+    --color-cerulean-100: #d7e5ef;
+    --color-cerulean-200: #afcbde;
+    --color-cerulean-300: #88b1ce;
+    --color-cerulean-400: #6097be;
+    --color-cerulean-500: #427aa1;
+    --color-cerulean-600: #356282;
+    --color-cerulean-700: #284a62;
+    --color-cerulean-800: #1b3141;
+    --color-cerulean-900: #0d1921;
+    --color-cerulean-950: #070d11;
+
+    --color-alice: #ebf2fa;
+
+    --color-sage-50: #f0f7e9;
+    --color-sage-100: #e1efd2;
+    --color-sage-200: #c3dfa5;
+    --color-sage-300: #a5ce78;
+    --color-sage-400: #87be4b;
+    --color-sage-500: #679436;
+    --color-sage-600: #53782b;
+    --color-sage-700: #3e5a20;
+    --color-sage-800: #293c16;
+    --color-sage-900: #151e0b;
+    --color-sage-950: #0b1006;
+
+    --color-lime-50: #fbffdf;
+    --color-lime-100: #f6ffbf;
+    --color-lime-200: #eeff7e;
+    --color-lime-300: #e5ff3e;
+    --color-lime-400: #dbfd00;
+    --color-lime-500: #a5be00;
+    --color-lime-600: #839700;
+    --color-lime-700: #627100;
+    --color-lime-800: #414b00;
+    --color-lime-900: #212600;
+    --color-lime-950: #111300;
+}
+
+@layer base {
+    input[type='checkbox'],
+    input[type='radio'] {
+        @apply accent-baltic-500 dark:accent-baltic-400;
+    }
+
+    ::selection {
+        @apply bg-baltic-100 text-baltic-900;
+    }
+}
+
+@layer components {
+    .page-title {
+        @apply text-xl font-semibold tracking-tight text-ink-900 dark:text-white;
+    }
+
+    .page-intro {
+        @apply mt-1 text-sm text-ink-500 dark:text-ink-400;
+    }
+
+    .eyebrow {
+        @apply text-xs font-semibold tracking-wider text-ink-500 uppercase dark:text-ink-400;
+    }
+
+    .back-link {
+        @apply inline-flex items-center gap-1 text-sm text-ink-500 hover:text-baltic-500 dark:text-ink-400 dark:hover:text-baltic-300;
+    }
+
+    .card {
+        @apply rounded-xl border border-ink-200 bg-white shadow-xs dark:border-ink-800 dark:bg-ink-900;
+    }
+
+    .card-list {
+        @apply divide-y divide-ink-100 overflow-hidden rounded-xl border border-ink-200 bg-white shadow-xs dark:divide-ink-800 dark:border-ink-800 dark:bg-ink-900;
+    }
+
+    .empty-state {
+        @apply rounded-xl border border-dashed border-ink-300 px-4 py-10 text-center text-sm text-ink-500 dark:border-ink-700 dark:text-ink-400;
+    }
+
+    .disclosure {
+        @apply rounded-xl border border-ink-200 bg-white p-4 shadow-xs dark:border-ink-800 dark:bg-ink-900;
+
+        & > summary {
+            @apply flex cursor-pointer list-none items-center gap-2 text-sm font-medium text-ink-800 dark:text-ink-100;
+
+            &::before {
+                content: '+';
+                @apply grid size-5 place-items-center rounded-md bg-ink-100 text-xs text-ink-600 dark:bg-ink-800 dark:text-ink-300;
+            }
+        }
+
+        &[open] > summary::before {
+            content: '−';
+        }
+    }
+
+    .btn {
+        @apply inline-flex shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .btn-sm {
+        @apply rounded-md px-2 py-1;
+    }
+
+    .btn-primary {
+        @apply bg-baltic-500 text-white shadow-xs hover:bg-baltic-600 dark:bg-baltic-400 dark:text-ink-950 dark:hover:bg-baltic-300;
+    }
+
+    .btn-secondary {
+        @apply border border-ink-200 bg-white text-ink-700 shadow-xs hover:border-ink-300 hover:bg-ink-50 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-200 dark:hover:bg-ink-800;
+    }
+
+    .btn-warning {
+        @apply bg-amber-600 text-white hover:bg-amber-700;
+    }
+
+    .btn-danger {
+        @apply bg-red-600 text-white hover:bg-red-700;
+    }
+
+    .link-subtle {
+        @apply cursor-pointer text-xs text-ink-500 hover:text-baltic-500 dark:text-ink-400 dark:hover:text-baltic-300;
+    }
+
+    .meta {
+        @apply text-xs text-ink-500 dark:text-ink-400;
+    }
+
+    .field-label {
+        @apply block text-xs font-medium text-ink-500 dark:text-ink-400;
+    }
+
+    .field {
+        @apply w-full rounded-lg border border-ink-200 bg-white px-3 py-1.5 text-sm text-ink-900 shadow-xs outline-none placeholder:text-ink-400 focus:border-baltic-400 focus:ring-3 focus:ring-baltic-100 dark:border-ink-700 dark:bg-ink-950 dark:text-ink-100 dark:placeholder:text-ink-500 dark:focus:border-baltic-400 dark:focus:ring-baltic-900;
+    }
+
+    .field-sm {
+        @apply w-auto rounded-md px-2 py-1 text-xs;
+    }
+
+    .field-error {
+        @apply mt-1 block text-xs text-red-600 dark:text-red-400;
+    }
+
+    .tag {
+        @apply inline-flex items-center rounded-full bg-ink-100 px-2 py-0.5 text-xs text-ink-600 hover:bg-ink-200 hover:text-ink-900 dark:bg-ink-800 dark:text-ink-300 dark:hover:bg-ink-700 dark:hover:text-white;
+    }
+
+    .chip-project {
+        @apply inline-flex items-center gap-1 rounded-full bg-cerulean-100 px-2 py-0.5 text-xs font-medium text-cerulean-700 hover:bg-cerulean-200 dark:bg-cerulean-800 dark:text-cerulean-100 dark:hover:bg-cerulean-700;
+    }
+
+    .badge {
+        @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs;
+    }
+
+    .stat {
+        @apply rounded-xl border border-ink-200 bg-white px-2 py-3 shadow-xs dark:border-ink-800 dark:bg-ink-900;
+    }
+}
+
+/* Minimal styling for AI-generated markdown bodies. */
+.markdown {
+    & > * + * { margin-top: 0.75em; }
+    & h1, & h2, & h3, & h4 { font-weight: 600; }
+    & ul { list-style: disc; padding-left: 1.25em; }
+    & ol { list-style: decimal; padding-left: 1.25em; }
+    & li + li { margin-top: 0.25em; }
+    & a { text-decoration: underline; text-decoration-color: var(--color-baltic-300); text-underline-offset: 2px; }
+    & code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+    & blockquote { border-left: 2px solid var(--color-baltic-300); opacity: 0.85; padding-left: 0.75em; }
+}
+
+.note-ref {
+    @apply rounded bg-cerulean-100 px-1 text-xs text-cerulean-700 no-underline hover:bg-cerulean-200 dark:bg-cerulean-800 dark:text-cerulean-100 dark:hover:bg-cerulean-700;
+}
+
+.markdown .note-ref { text-decoration: none; }
+
+/* Suggestions while typing a [[wiki-link]]. */
+.wiki-menu {
+    @apply absolute left-0 z-30 mt-1 max-h-64 w-full max-w-md overflow-y-auto rounded-lg border border-ink-200 bg-white py-1 text-sm shadow-lg dark:border-ink-700 dark:bg-ink-900;
+
+    & li { @apply cursor-pointer truncate px-3 py-1.5; }
+    & li:hover, & li.is-active { @apply bg-baltic-50 text-baltic-700 dark:bg-baltic-900 dark:text-baltic-100; }
+}
+
+/* Writing view: switch between the editor and a rendered preview. */
+.write-tab {
+    @apply rounded-md px-2.5 py-1 text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-800 dark:text-ink-400 dark:hover:bg-ink-800 dark:hover:text-ink-100;
+
+    &.is-active { @apply bg-ink-200/70 font-medium text-ink-900 dark:bg-ink-800 dark:text-white; }
+}
